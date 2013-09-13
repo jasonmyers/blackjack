@@ -1,16 +1,10 @@
-deck = ["ace,spade", "king,spade", "queen,spade", "jack,spade", "ten,spade",
-		"ace,clubs", "king,clubs", "queen,clubs", "jack,clubs", "ten,clubs",
-		"ace,hearts", "king,hearts", "queen,hearts", "jack,hearts", "ten,hearts",
-		"ace,diamonds", "king,diamonds", "queen,diamonds", "jack,diamonds", "ten,diamonds",
-       ]
-card_values = {
-				"ace" : 11, "king" : 10, "queen" : 10, "jack" : 10,
-				"ten" : 10, "nine" : 9, "eight" : 8, "seven" : 7,
-				"six" : 6, "five" : 5, "four" : 4, "three" : 3,	
-				"two" : 2
-			  }
-
 class Hand(object):
+	card_values = {
+				    "ace" : 11, "king" : 10, "queen" : 10, "jack" : 10,
+				    "ten" : 10, "nine" : 9, "eight" : 8, "seven" : 7,
+				    "six" : 6, "five" : 5, "four" : 4, "three" : 3,	
+				    "two" : 2
+			      }
 	def __init__(self):
 		self.cards = []
 
@@ -20,7 +14,7 @@ class Hand(object):
 	def calculate_hand_score(self):
 		hand_total = 0
 		for card in self.cards:
-			hand_total += card_values[card[0]]
+			hand_total += self.card_values[card[0]]
 		return hand_total
 
 class Card(object):
@@ -60,4 +54,3 @@ def get_winning_hand(hand1, hand2):
 
 
 
-		
