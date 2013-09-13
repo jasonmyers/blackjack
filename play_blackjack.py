@@ -1,13 +1,7 @@
 from blackjack import Hand, Card, Dealer, Player, get_winning_hand
 import random
 
-
-
-
-
-if __name__ == '__main__':
-
-	deck = ["ace,spades", "king,spades", "queen,spades", "jack,spades", "ten,spades",
+deck = ["ace,spades", "king,spades", "queen,spades", "jack,spades", "ten,spades",
 	"nine,spades", "eight,spades", "seven,spades", "six,spades", 
 	"five,spades", "four,spades", "three,spades", "two,spades",
 	"ace,clubs", "king,clubs", "queen,clubs", "jack,clubs", "ten,clubs",
@@ -20,6 +14,14 @@ if __name__ == '__main__':
 	"nine,diamonds", "eight,diamonds", "seven,diamonds", "six,diamonds", 
 	"five,diamonds", "four,diamonds", "three,diamonds", "two,diamonds"]
 	
+def deal_card():
+	playing_card = random.choice(deck)
+	deck.remove(playing_card)	
+	return playing_card
+
+
+if __name__ == '__main__':
+
 	play_game = True
 	
 	while play_game:
@@ -27,26 +29,18 @@ if __name__ == '__main__':
 		print "dealing cards ...."
 		dealer = Dealer()
 		# Deal 2 cards for Dealer
-		playing_card = random.choice(deck)
-		print playing_card
-		deck.remove(playing_card)
-		rank, suit = playing_card.split(',')
+		rank, suit = deal_card().split(',')
 		dealer.add_card(Card(rank,suit))
-		playing_card = random.choice(deck)
-		print playing_card
-		deck.remove(playing_card)
-		rank, suit = playing_card.split(',')
+
+		rank, suit = deal_card().split(',')
 		dealer.add_card(Card(rank,suit))
 
 		# Deal player cards
 		player = Player()
-		playing_card = random.choice(deck)
-		deck.remove(playing_card)
-		rank, suit = playing_card.split(',')
+		rank, suit = deal_card().split(',')
 		player.add_card(Card(rank,suit))
-		playing_card = random.choice(deck)
-		deck.remove(playing_card)
-		rank, suit = playing_card.split(',')
+
+		rank, suit = deal_card().split(',')
 		player.add_card(Card(rank,suit))
 
 		# Show hands
@@ -54,11 +48,9 @@ if __name__ == '__main__':
 		print "Players Hand : %s", player.print_hand()
 
 		# Get choice from Player
-		player_choice = raw_input("Enter Choice : H(it) or S(tand) - ")
-		if player_choice == 'H':
-			playing_card = random.choice(deck)
-			deck.remove(playing_card)
-			rank, suit = playing_card.split(',')
+		player_choice = raw_input("Enter Choice : H(it) or S(tand) - ").lower()
+		if player_choice == 'h':
+			rank, suit = deal_card().split(',')
 			player.add_card(Card(rank,suit))
 
 		print "Dealers Hand : %s", ' & '.join([card[0] + ' of ' + card[1] for card in dealer.cards])
