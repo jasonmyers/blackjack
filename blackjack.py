@@ -8,7 +8,7 @@ class Hand(object):
 	def __init__(self):
 		self.cards = []
 
-	def addCard(self, card):
+	def add_card(self, card):
 		self.cards.append(card.__repr__())
 
 	def calculate_hand_score(self):
